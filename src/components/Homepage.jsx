@@ -9,7 +9,7 @@ function Homepage() {
 	return (
 		<>
 			{/* <!-- hero section --> */}
-			<div className="h-56 sm:h-64 xl:h-80 2xl:h-96 my-5">
+			<div className="h-56 sm:h-64 xl:h-80 2xl:h-96 mb-20">
 				<Carousel>
 					<img src={image1} alt="games-image" />
 					<img src={image2} alt="games-image" />

@@ -4,7 +4,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import options from "../../api/api";
 // import Swiper core and required modules
-import { Navigation, Pagination, Scrollbar, A11y } from "swiper";
+import { Navigation, Pagination } from "swiper";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -13,13 +13,11 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
-import { createBrowserRouter, RouterProvider, Route, Link } from "react-router-dom";
-
-
+import { Link } from "react-router-dom";
 
 const List = () => {
 	const [items, setItems] = useState([]);
-	const [activeNav, setActiveNav] = useState("/");
+
 	useEffect(() => {
 		async function fetchData() {
 			// You can await here
@@ -32,21 +30,25 @@ const List = () => {
 		}
 		fetchData();
 	}, [options]);
+
 	return (
 		<section id="list-games">
-			<h2>List Games</h2>
+			<h2 className="text-5xl">List Games</h2>
 
 			<Swiper
-				className="container games_container"
 				// install Swiper modules
+				className="container games_container"
 				modules={[Navigation, Pagination]}
 				spaceBetween={50}
-				slidesPerView={3}
-				navigation={{ clickable: true }}
-				// scrollbar={{ draggable: true }}
-				// onSwiper={(swiper) => console.log(swiper)}
-				// onSlideChange={() => console.log("slide change")}
-			>
+				breakpoints={{
+					640: {
+						slidesPerView: 2,
+					},
+					1200: {
+						slidesPerView: 3,
+					},
+				}}
+				navigation={{ clickable: true }}>
 				{items.map(({ id, thumbnail, title }) => {
 					return (
 						<SwiperSlide key={id} className="games">
@@ -55,7 +57,7 @@ const List = () => {
 									<img src={thumbnail} alt={title} />
 								</div>
 								<h3>{title}</h3>
-								<Link to={`/detail/${id}`} className={activeNav === "/" ? "active" : ""}>
+								<Link to={`/detail/${id}`}>
 									<span className="btn">Detail</span>
 								</Link>
 							</article>
@@ -63,8 +65,6 @@ const List = () => {
 					);
 				})}
 			</Swiper>
-			{/* <div class="swiper-button-next"></div>
-      <div class="swiper-button-prev"></div> */}
 		</section>
 	);
 };
