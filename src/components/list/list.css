@@ -35,7 +35,6 @@
 
 .btn {
 	background: transparent;
-	float: left;
 }
 /* *********** Media Query (Medium Device) *********** */
 @media screen and (max-width: 1024px) {

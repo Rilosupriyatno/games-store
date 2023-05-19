@@ -18,7 +18,7 @@ function Navbar() {
 				</h1>
 				<ul className="flex flex-row justify-between place-items-center lg:mx-24">
 					<li className="px-1 lg:px-7 hover:text-white duration-300">
-						<Link to="/abt">about</Link>
+						<Link to="/about">about</Link>
 					</li>
 					<li className="px-1 lg:px-7 hover:text-white duration-300">
 						<a href="">how to buy</a>
@@ -45,9 +45,9 @@ function Navbar() {
 				className="flex text-xl font-bold text-gray-400  bg-gradient-to-r from-[#001f52] 
             via-[#001f52] to-[#000000] uppercase flex-row justify-between place-items-center py-5">
 				{/* <!-- brand --> */}
-				<a className="mx-2 lg:mx-24 text-white" href="">
-					<h1>gameshop</h1>
-				</a>
+				<Link to="/" className="mx-2 text-3xl lg:mx-24 text-white">
+					gameshop
+				</Link>
 				{/*  item menu search dll */}
 				<div className="flex flex-row place-items-center justify-center">
 					{/* <!-- container search --> */}
