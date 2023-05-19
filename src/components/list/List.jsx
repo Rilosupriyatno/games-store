@@ -15,6 +15,8 @@ import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import { createBrowserRouter, RouterProvider, Route, Link } from "react-router-dom";
 
+
+
 const List = () => {
 	const [items, setItems] = useState([]);
 	const [activeNav, setActiveNav] = useState("/");
