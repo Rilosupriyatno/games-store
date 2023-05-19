@@ -36,11 +36,11 @@ const List = () => {
     fetchData();
   }, [options]);
   return (
-    <section id="list-games">
+    <section id="list-games" className="mt-4">
       <h2>List Games</h2>
 
       <Swiper
-        className="container games_container"
+        className="grid gap-10"
         // install Swiper modules
         modules={[Navigation, Pagination]}
         spaceBetween={50}
@@ -53,17 +53,19 @@ const List = () => {
         {items.map(({ id, thumbnail, title }) => {
           return (
             <SwiperSlide className="games">
-              <article key={id} className="games_item">
-                <div className="games_item-image">
+              <article
+                key={id}
+                className="p-5 rounded-lg h-full background: var(--color-bg-variant);"
+              >
+                <div className="rounded-lg overflow-hidden">
                   <img src={thumbnail} alt={title} />
                 </div>
                 <h3>{title}</h3>
                 <Link
-                  to="/detail"
-                  onClick={() => setActiveNav("/detail")}
+                  to={`/detail/${id}`}
                   className={activeNav === "/" ? "active" : ""}
                 >
-                  <button className="btn">Detail</button>
+                  <span className="bg-transparent float-left">Detail</span>
                 </Link>
               </article>
             </SwiperSlide>
