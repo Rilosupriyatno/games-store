@@ -160,7 +160,7 @@ function Homepage() {
       </div>
 
       {/* <!-- product list --> */}
-      <section className="my-10 rounded-lg">
+      <section className="my-10">
         <List />
       </section>
 
