@@ -41,11 +41,22 @@ const List = () => {
 
       <Swiper
         className="container games_container"
-        // install Swiper modules
+        // install Swiper
+
         modules={[Navigation, Pagination]}
         spaceBetween={50}
         slidesPerView={3}
         navigation={{ clickable: true }}
+        breakpoints={{
+          // when window width is >= 640px
+          640: {
+            width: 640,
+            slidesPerView: 1,
+          },
+          1000: {
+            slidesPerView: 3,
+          },
+        }}
         // scrollbar={{ draggable: true }}
         // onSwiper={(swiper) => console.log(swiper)}
         // onSlideChange={() => console.log("slide change")}
