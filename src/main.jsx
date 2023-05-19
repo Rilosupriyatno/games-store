@@ -10,17 +10,17 @@ import List from "./components/list/List";
 import Detail from "./components/detail/Detail";
 
 const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <App />,
-  },
-  {
-    path: "/detail",
-    element: <Detail />,
-  },
+	{
+		path: "/",
+		element: <App />,
+	},
+	{
+		path: "/detail/:id",
+		element: <Detail />,
+	},
 ]);
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <RouterProvider router={router} />
-  </React.StrictMode>
+	<React.StrictMode>
+		<RouterProvider router={router} />
+	</React.StrictMode>
 );
