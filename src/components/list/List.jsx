@@ -61,12 +61,12 @@ const List = () => {
                   <img src={thumbnail} alt={title} />
                 </div>
                 <h3>{title}</h3>
-                {/* <Link
+                <Link
                   to={`/detail/${id}`}
                   className={activeNav === "/" ? "active" : ""}
                 >
                   <span className="bg-transparent float-left">Detail</span>
-                </Link> */}
+                </Link>
               </article>
             </SwiperSlide>
           );
