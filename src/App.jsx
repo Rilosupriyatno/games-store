@@ -8,15 +8,15 @@ import { Route } from "react-router-dom";
 import Homepage from "./components/Homepage";
 
 function App() {
-  // const [count, setCount] = useState(0);
-  return (
-    <>
-      <Homepage />
-      {/* <Routes>
+	// const [count, setCount] = useState(0);
+	return (
+		<>
+			<Homepage />
+			{/* <Routes>
         <Route path="/Homepage" element={Homepage} />
       </Routes> */}
-    </>
-  );
+		</>
+	);
 }
 
 export default App;
