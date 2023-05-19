@@ -3,57 +3,75 @@ import "./list.css";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import options from "../../api/api";
+// import Swiper core and required modules
+import { Navigation, Pagination, Scrollbar, A11y } from "swiper";
+
+import { Swiper, SwiperSlide } from "swiper/react";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/scrollbar";
+import {
+  createBrowserRouter,
+  RouterProvider,
+  Route,
+  Link,
+} from "react-router-dom";
 
 const List = () => {
   const [items, setItems] = useState([]);
-  const [success, setSuccess] = useState(false);
-  const fetchItems = async () => {
-    try {
-      const response = await options.get("games", {
-        params: {
-          result: 10,
-          platform: "pc",
-        },
-      });
-      setItems(response.data);
-      setSuccess(true);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  const [activeNav, setActiveNav] = useState("/");
   useEffect(() => {
-    const cancelToken = axios.CancelToken.source();
-    fetchItems(cancelToken.token);
-  }, []);
+    async function fetchData() {
+      // You can await here
+      try {
+        const response = await axios.request(options);
+        setItems(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    fetchData();
+  }, [options]);
   return (
     <section id="list-games">
       <h2>List Games</h2>
 
-      <div className="container games_container">
+      <Swiper
+        className="container games_container"
+        // install Swiper modules
+        modules={[Navigation, Pagination]}
+        spaceBetween={50}
+        slidesPerView={3}
+        navigation={{ clickable: true }}
+        // scrollbar={{ draggable: true }}
+        // onSwiper={(swiper) => console.log(swiper)}
+        // onSlideChange={() => console.log("slide change")}
+      >
         {items.map(({ id, thumbnail, title }) => {
-          //   const [tambah, setTambah] = useState(false);
-          //   const tambahLike = () => {
-          //     setTambah(tambah + 1);
-          //   };
           return (
-            <article key={id} className="games_item">
-              <div className="games_item-image">
-                <img src={thumbnail} alt={title} />
-              </div>
-              <h3>{title}</h3>
-              {/* <small>{tambah} Orang menyukai ini</small> */}
-              <div className="games_item-cta">
-                {/* <a href={github} className="btn" target="blank">
-                  Github
-                </a> */}
-                {/* <button onClick={tambahLike} className="btn">
-                  Like
-                </button> */}
-              </div>
-            </article>
+            <SwiperSlide className="games">
+              <article key={id} className="games_item">
+                <div className="games_item-image">
+                  <img src={thumbnail} alt={title} />
+                </div>
+                <h3>{title}</h3>
+                <Link
+                  to="/detail"
+                  onClick={() => setActiveNav("/detail")}
+                  className={activeNav === "/" ? "active" : ""}
+                >
+                  <button className="btn">Detail</button>
+                </Link>
+              </article>
+            </SwiperSlide>
           );
         })}
-      </div>
+      </Swiper>
+      {/* <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div> */}
     </section>
   );
 };

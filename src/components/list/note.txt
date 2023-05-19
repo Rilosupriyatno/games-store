@@ -1,0 +1,122 @@
+import React from "react";
+import "./list.css";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import options from "../../api/api";
+// import Swiper core and required modules
+import { Navigation, Pagination, Scrollbar, A11y } from "swiper";
+
+import { Swiper, SwiperSlide } from "swiper/react";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/scrollbar";
+
+const List = () => {
+  const [items, setItems] = useState([]);
+  // const [success, setSuccess] = useState(false);
+  // const fetchItems = async () => {
+  //   try {
+  //     const response = await options.get("games", {
+  //       params: {
+  //         result: 10,
+  //         platform: "pc",
+  //       },
+  //     });
+  //     setItems(response.data);
+  //     setSuccess(true);
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
+  // useEffect(() => {
+  //   const cancelToken = axios.CancelToken.source();
+  //   fetchItems(cancelToken.token);
+  // }, []);
+  useEffect(() => {
+    async function fetchData() {
+      // You can await here
+      try {
+        const response = await axios.request(options);
+        setItems(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    fetchData();
+  }, [options]);
+  return (
+    //     <section id="testimonials">
+    //   <h5>Review from clients</h5>
+    //   <h2>Testimonials</h2>
+
+    //   <Swiper
+    //     className="container testimonials_container"
+    //     // install Swiper modules
+    //     modules={[Pagination]}
+    //     spaceBetween={40}
+    //     slidesPerView={1}
+    //     pagination={{ clickable: true }}
+    //   >
+    //     {data.map(({ avatar, name, review }, index) => {
+    //       return (
+    //         <SwiperSlide key={index} className="testimonial">
+    //           <div className="client_avatar">
+    //             <img src={avatar} alt="" />
+    //           </div>
+    //           <div className="client_name">
+    //             <h5 className="client_name">{name}</h5>
+    //             <small className="client_review">{review}</small>
+    //           </div>
+    //         </SwiperSlide>
+    //       );
+    //     })}
+    //   </Swiper>
+    // </section>
+    <section id="list-games" className="swiper">
+      <h2>List Games</h2>
+
+      <Swiper
+        className="container games_container swiper-wrapper"
+        // install Swiper modules
+        modules={[Navigation, Pagination, Scrollbar, A11y]}
+        spaceBetween={50}
+        slidesPerView={3}
+        navigation
+        pagination={{ clickable: true }}
+        scrollbar={{ draggable: true }}
+        onSwiper={(swiper) => console.log(swiper)}
+        onSlideChange={() => console.log("slide change")}
+      >
+        {items.map(({ id, thumbnail, title }) => {
+          //   const [tambah, setTambah] = useState(false);
+          //   const tambahLike = () => {
+          //     setTambah(tambah + 1);
+          //   };
+          return (
+            <SwiperSlide key={id} className="games_item swiper-slide">
+              <div className="games_item-image">
+                <img src={thumbnail} alt={title} />
+              </div>
+              <h3>{title}</h3>
+              {/* <small>{tambah} Orang menyukai ini</small> */}
+              <div className="games_item-cta">
+                {/* <a href={github} className="btn" target="blank">
+                  Github
+                </a> */}
+                {/* <button onClick={tambahLike} className="btn">
+                  Like
+                </button> */}
+              </div>
+              <div class="swiper-button-next"></div>
+              <div class="swiper-button-prev"></div>
+            </SwiperSlide>
+          );
+        })}
+      </Swiper>
+    </section>
+  );
+};
+export default List;

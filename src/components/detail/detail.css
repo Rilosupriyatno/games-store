@@ -2,40 +2,52 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 2.5rem;
-  height: 300%;
+  height: 300px;
 }
-#list-games {
+#games {
   margin-top: 1rem;
 }
-.games .games_item {
+.games_item {
   background: var(--color-bg-variant);
   padding: 1.3rem;
   border-radius: 2rem;
   border: 1px solid transparent;
   transition: var(--transition);
-  height: 100%;
 }
-.games .games_item:hover {
+.games_item:hover {
   border-color: var(--color-primary-variant);
   background: transparent;
 }
-.games .games_item-image {
+.games_item-image {
   border-radius: 1.5rem;
   overflow: hidden;
 }
-.games .games_item h3 {
+.games_item h3 {
   margin: 1.2rem 0 2rem;
 }
-.games .games_item-cta {
+.games_item-cta {
   display: flex;
   gap: 1rem;
   margin-bottom: 1rem;
 }
-
 .btn {
   background: transparent;
-  float: left;
 }
+
+Swiper {
+  width: 100%;
+  height: 100%;
+}
+
+SwiperSlide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 /* *********** Media Query (Medium Device) *********** */
 @media screen and (max-width: 1024px) {
   .games_container {
