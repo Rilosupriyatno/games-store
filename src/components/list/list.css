@@ -2,7 +2,7 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 2.5rem;
-  height: 300%;
+  height: 500%;
 }
 #list-games {
   margin-top: 1rem;
@@ -34,7 +34,8 @@
 
 .btn {
   background: transparent;
-  float: left;
+
+  display: block;
 }
 /* *********** Media Query (Medium Device) *********** */
 @media screen and (max-width: 1024px) {

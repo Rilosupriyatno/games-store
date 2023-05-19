@@ -14,7 +14,7 @@ const Detail = () => {
       // You can await here
       try {
         const response = await axios.get(
-          "https://free-to-play-games-database.p.rapidapi.com/api/filter",
+          "https://free-to-play-games-database.p.rapidapi.com/api/game",
           {
             params: {
               id: id,
@@ -37,18 +37,38 @@ const Detail = () => {
     return <h2>Loading...</h2>;
   }
   return (
-    <section id="list-games" className="mt-4">
-      <h2>List Games</h2>
-
-      <div className="grid gap-10">
-        <article className="p-5 rounded-lg h-full background: var(--color-bg-variant);">
-          <div className="rounded-lg overflow-hidden">
+    <section id="about">
+      <h2>Detail Games</h2>
+      <div className="container about_container">
+        <div className="about_me">
+          <div className="about_me-image">
             <img src={items.thumbnail} alt={items.title} />
           </div>
+        </div>
+        <div className="about_content">
           <h3>{items.title}</h3>
-        </article>
+          <h4> Genre : {items.genre}</h4>
+          <h4> Publisher : {items.publisher}</h4>
+          <h4> Developer : {items.developer}</h4>
+          <h4>Description : {items.short_description}</h4>
+        </div>
       </div>
     </section>
+    // <section id="list-games">
+
+    //   <div className="container games_container">
+    //     <article className="games_item">
+    //       <div className="games_item-image">
+    //         <img src={items.thumbnail} alt={items.title} />
+    //       </div>
+    //       <h3>{items.title}</h3>
+    //       <span>{items.short_description}</span>
+    //       <span>{items.genre}</span>
+    //       <span>{items.publisher}</span>
+    //       <span>{items.developer}</span>
+    //     </article>
+    //   </div>
+    // </section>
   );
 };
 export default Detail;
